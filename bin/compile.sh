@@ -1,5 +1,5 @@
-X!/bin/bash
-if [ ! -d classes ]Â; then
+#!/bin/bash
+if [ ! -d classes ]; then
 	mkdir classes
 fi
 javac src/main/java/is/ru/stringcalculator/*.java -d classes
