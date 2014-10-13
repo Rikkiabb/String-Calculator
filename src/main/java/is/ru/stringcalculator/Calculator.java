@@ -28,15 +28,23 @@ public class Calculator{
 		int total = 0;
 		int[] negatives = new int[numbers.length];
 		int counterOfNegatives = 0;
+		String errorString = "Negatives not allowed: ";
 		for(String number : numbers){
 			if(isNegative(toInt(number))){
 				negatives[counterOfNegatives] = toInt(number);
 				counterOfNegatives++;
+				if(counterOfNegatives == 1){
+					errorString += number;
+				}
+				else{
+					errorString += ",";
+					errorString += number;
+				}
 			}
 			total += toInt(number);
 		}
 		if(areThereAnyNegativeNumbers(counterOfNegatives)){
-			throwException();
+			throwException(errorString);
 		}
 		return total;
 	}
@@ -60,7 +68,7 @@ public class Calculator{
 		return number > 0;
 	}
 
-	private static void throwException(){
-		throw new RuntimeException("Negatives not allowed: -1");
+	private static void throwException(String error){
+		throw new RuntimeException(error);
 	}
 }
