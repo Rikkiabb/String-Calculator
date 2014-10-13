@@ -1,8 +1,10 @@
 package is.ru.stringcalculator;
 public class Calculator{
+
+
 	public static int add(String text){
 		if(text.equals(""))	return 0;
-		else if(text.contains(",") || text.contains("\n")){
+		else if(delimiter(text)){
 			return sum(splitNumbers(text));
 		}
 		else	return 1;
@@ -22,5 +24,9 @@ public class Calculator{
 			total += toInt(number);
 		}
 		return total;
+	}
+
+	private static boolean delimiter(String numbers){
+		return (numbers.contains(",") || numbers.contains("\n"));
 	}
 }
