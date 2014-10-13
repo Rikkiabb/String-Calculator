@@ -39,7 +39,7 @@ public class Calculator{
 					errorString += number;
 				}
 			}
-			if(toInt(number) <= 1000){
+			if(numberInRightRange(toInt(number))){
 				total += toInt(number);
 			}
 		}
@@ -74,5 +74,9 @@ public class Calculator{
 
 	private static boolean firstNegativeNumber(int number){
 		return number == 1;
+	}
+
+	private static boolean numberInRightRange(int number){
+		return number <= 1000;
 	}
 }
