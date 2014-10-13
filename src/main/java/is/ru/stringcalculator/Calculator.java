@@ -39,7 +39,9 @@ public class Calculator{
 					errorString += number;
 				}
 			}
-			total += toInt(number);
+			if(toInt(number) <= 1000){
+				total += toInt(number);
+			}
 		}
 		if(areThereAnyNegativeNumbers(counterOfNegatives)){
 			throwException(errorString);
