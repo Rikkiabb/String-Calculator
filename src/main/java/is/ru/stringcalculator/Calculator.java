@@ -29,16 +29,16 @@ public class Calculator{
 		int[] negatives = new int[numbers.length];
 		int counterOfNegatives = 0;
 		for(String number : numbers){
-			if(toInt(number) < 0){
-			negatives[counterOfNegatives] = toInt(number);
-			counterOfNegatives++;
+			if(isNegative(toInt(number))){
+				negatives[counterOfNegatives] = toInt(number);
+				counterOfNegatives++;
 			}
 			total += toInt(number);
 		}
-		if(counterOfNegatives > 0){
-			throw new RuntimeException("Negatives not allowed: -1");
+		if(areThereAnyNegativeNumbers(counterOfNegatives)){
+			throwException();
 		}
-		else	return total;
+		return total;
 	}
 
 	private static boolean delimiter(String numbers){
@@ -50,5 +50,17 @@ public class Calculator{
 		String currentDelimiter = String.valueOf(numbers.charAt(2));
 		String textWithCommas = numbersWithoutSign.replaceAll(currentDelimiter, ",");
 		return textWithCommas;
+	}
+
+	private static boolean isNegative(int number){
+		return number < 0;
+	}
+
+	private static boolean areThereAnyNegativeNumbers(int number){
+		return number > 0;
+	}
+
+	private static void throwException(){
+		throw new RuntimeException("Negatives not allowed: -1");
 	}
 }
