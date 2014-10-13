@@ -26,10 +26,19 @@ public class Calculator{
 
 	private static int sum(String[] numbers){
 		int total = 0;
+		int[] negatives = new int[numbers.length];
+		int counterOfNegatives = 0;
 		for(String number : numbers){
+			if(toInt(number) < 0){
+			negatives[counterOfNegatives] = toInt(number);
+			counterOfNegatives++;
+			}
 			total += toInt(number);
 		}
-		return total;
+		if(counterOfNegatives > 0){
+			throw new RuntimeException("Negatives not allowed: -1");
+		}
+		else	return total;
 	}
 
 	private static boolean delimiter(String numbers){

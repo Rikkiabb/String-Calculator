@@ -38,4 +38,14 @@ public class CalculatorTest{
 	public void testDelimiter(){
 		assertEquals(3, Calculator.add("//;\n1;2"));
 	}
+
+	@Test
+	public void testNegativesNumbers(){
+		try{
+		Calculator.add("-1,2");
+		}
+		catch (RuntimeException ex){
+		assertEquals("Negatives not allowed: -1", ex.getMessage());
+		}
+	}
 }
