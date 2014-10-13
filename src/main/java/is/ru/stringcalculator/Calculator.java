@@ -54,10 +54,21 @@ public class Calculator{
 	}
 
 	private static String formatString(String numbers){
-		String numbersWithoutSign = numbers.substring(4);
-		String currentDelimiter = String.valueOf(numbers.charAt(2));
-		String textWithCommas = numbersWithoutSign.replaceAll(currentDelimiter, ",");
-		return textWithCommas;
+		if(numbers.contains("[")){ 
+			int beginningOfDelimiter = (numbers.indexOf("[") + 1);
+			int endOfDelimiter = numbers.indexOf("]");
+			int startOfNumbers = (endOfDelimiter + 2);
+			String numbersWithoutSign = numbers.substring(startOfNumbers);
+			String currentDelimiter = String.valueOf(numbers.substring(beginningOfDelimiter, endOfDelimiter));
+			String textWithCommas = numbersWithoutSign.replaceAll(currentDelimiter, ",");
+			return textWithCommas;
+		}
+		else{
+			String numbersWithoutSign = numbers.substring(4);
+			String currentDelimiter = String.valueOf(numbers.charAt(2));
+			String textWithCommas = numbersWithoutSign.replaceAll(currentDelimiter, ",");
+			return textWithCommas;
+		}
 	}
 
 	private static boolean isNegative(int number){
