@@ -33,7 +33,7 @@ public class Calculator{
 			if(isNegative(toInt(number))){
 				negatives[counterOfNegatives] = toInt(number);
 				counterOfNegatives++;
-				if(counterOfNegatives == 1){
+				if(firstNegativeNumber(counterOfNegatives)){
 					errorString += number;
 				}
 				else{
@@ -70,5 +70,9 @@ public class Calculator{
 
 	private static void throwException(String error){
 		throw new RuntimeException(error);
+	}
+
+	private static boolean firstNegativeNumber(int number){
+		return number == 1;
 	}
 }
