@@ -26,12 +26,10 @@ public class Calculator{
 
 	private static int sum(String[] numbers){
 		int total = 0;
-		int[] negatives = new int[numbers.length];
 		int counterOfNegatives = 0;
 		String errorString = "Negatives not allowed: ";
 		for(String number : numbers){
 			if(isNegative(toInt(number))){
-				negatives[counterOfNegatives] = toInt(number);
 				counterOfNegatives++;
 				if(firstNegativeNumber(counterOfNegatives)){
 					errorString += number;
