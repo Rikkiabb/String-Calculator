@@ -54,13 +54,27 @@ public class Calculator{
 	}
 
 	private static String formatString(String numbers){
-		if(numbers.contains("[")){ 
-			int beginningOfDelimiter = (numbers.indexOf("[") + 1);
-			int endOfDelimiter = numbers.indexOf("]");
-			int startOfNumbers = (endOfDelimiter + 2);
-			String numbersWithoutSign = numbers.substring(startOfNumbers);
-			String currentDelimiter = String.valueOf(numbers.substring(beginningOfDelimiter, endOfDelimiter));
-			String textWithCommas = numbersWithoutSign.replaceAll(currentDelimiter, ",");
+		if(numbers.contains("[")){
+			String textWithCommas = numbers;
+			String returnString = "";
+			while(numbers.contains("[")){ 
+				int beginningOfDelimiter = (numbers.indexOf("[") + 1);
+				int endOfDelimiter = numbers.indexOf("]");
+				int startOfNumbers = numbers.indexOf("\n" + 1);
+				String numbersWithoutSign = numbers.substring(startOfNumbers);
+				String currentDelimiter = String.valueOf(numbers.substring(beginningOfDelimiter, endOfDelimiter));
+				String[] changeDelimiter = currentDelimiter.split("");
+				for(int i = 1; i < changeDelimiter.length; i++){
+					changeDelimiter[i]  = "\\" + changeDelimiter[i];
+				}
+				String delimitersWithEscape = "";
+				for(int i = 1; i < changeDelimiter.length; i++){
+					delimitersWithEscape += changeDelimiter[i];
+				}
+				textWithCommas = numbersWithoutSign.replaceAll(delimitersWithEscape, ",");
+				numbers  = numbers.substring(endOfDelimiter + 1, startOfNumbers) + textWithCommas;
+			}
+			textWithCommas = textWithCommas.replaceFirst("\n", "");
 			return textWithCommas;
 		}
 		else{
