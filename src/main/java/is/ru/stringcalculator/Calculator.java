@@ -54,10 +54,10 @@ public class Calculator{
 	}
 
 	private static String formatString(String numbers){
-		if(numbers.contains("[")){
+		if(manyDelimiters(numbers)){
 			String textWithCommas = numbers;
 			String returnString = "";
-			while(numbers.contains("[")){ 
+			while(manyDelimiters(numbers)){ 
 				int beginningOfDelimiter = (numbers.indexOf("[") + 1);
 				int endOfDelimiter = numbers.indexOf("]");
 				int startOfNumbers = numbers.indexOf("\n" + 1);
@@ -71,6 +71,7 @@ public class Calculator{
 				for(int i = 1; i < changeDelimiter.length; i++){
 					delimitersWithEscape += changeDelimiter[i];
 				}
+
 				textWithCommas = numbersWithoutSign.replaceAll(delimitersWithEscape, ",");
 				numbers  = numbers.substring(endOfDelimiter + 1, startOfNumbers) + textWithCommas;
 			}
@@ -103,5 +104,9 @@ public class Calculator{
 
 	private static boolean numberInRightRange(int number){
 		return number <= 1000;
+	}
+
+	private static boolean manyDelimiters(String numbers){
+		return numbers.contains("[");
 	}
 }
