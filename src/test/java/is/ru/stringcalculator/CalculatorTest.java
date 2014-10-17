@@ -70,7 +70,12 @@ public class CalculatorTest{
         }
 
 	@Test
-	public void testDifferentDelmiters(){
+	public void testDifferentDelimiters(){
 		assertEquals(6, Calculator.add("//[*][%]\n1*2%3"));
+	}
+
+	@Test
+	public void testMultipleDifferentDelimiters(){
+		assertEquals(6, Calculator.add("//[***][%%%]\n1***2%%%3"));
 	}
 }
