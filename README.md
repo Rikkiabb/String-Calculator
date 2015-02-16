@@ -1,4 +1,4 @@
 String-Calculator
 =================
 
-Verkefni í hugbúnaðarfræði
+A project about a simple string calculator made in software engineering in my third semester. A exercise in TDD.
